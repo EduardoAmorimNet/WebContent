@@ -1,0 +1,102 @@
+ul{
+	height: 60%;
+}
+
+.div-form{
+	background-color: #FFF;
+	float: left;
+	
+	padding: 10px;
+	padding-right: 20px;
+	width: 84%; 
+}
+
+.div-properties{
+	width: 50%;
+	margin-left: 25%;
+}
+
+.div-tool{
+	background-color: #FFF;
+	float: left;
+	height: 100%;
+	margin-left: 0.5%;
+	width: 15.5%; 
+}
+
+.li-hide{
+	display:none !important;	
+}
+
+.scroll{
+	height: 100vh;   
+	overflow-y : auto;
+}	
+
+.p-doc{
+	font-family: Calibri !important;
+	color: #000000 !important;
+	font-size: 11pt !important;
+}
+
+.h3-doc{
+	font-size: 16pt !important;
+	font-family: Calibri !important;
+	color: #000000 !important;
+	font-weight: bold;
+}
+
+.h4-doc{
+	font-size: 11pt !important;
+	font-family: Calibri !important;
+	color: #000000 !important;
+	font-weight: bold;
+	font-style: italic;
+	text-align: justify;
+}
+
+.table-doc, caption, th, td {
+   border: 1px solid black;
+}
+
+.table-doc, th{
+	background-color: #DBE5F1;
+	color: #000000 !important;   
+	font-size: 11pt !important;
+	font-family: Calibri !important;
+}
+
+.table-doc, caption{
+   background-color: #376091;
+}
+
+.table-doc, caption p{
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	font-size: 11pt !important;
+	font-family: Calibri !important;
+}
+
+.section{
+	color: #000000 !important;
+	font-weight: bold;
+	text-align: center;
+	font-size: 11pt !important;
+	font-family: Calibri !important;
+	background-color: #C4BC96;
+} 
+
+.line td{
+	font-size: 11pt !important;
+	font-family: Calibri !important;
+	color: #000000 !important;	
+}
+
+#codigoFonte{margin-top: 45px;}
+#div-help{display:none;}
+#div-documentation{
+	display:none;
+	width:790px;
+	margin: 0px auto;
+}

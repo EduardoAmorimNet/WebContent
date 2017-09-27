@@ -1,0 +1,218 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Form Creator</title>
+		<link type="text/css" rel="stylesheet" href="fluig-style-guide.min.css"/>
+		<link type="text/css" rel="stylesheet" href="index.css"/>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="http://style.fluig.com/js/fluig-style-guide.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="mustache.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="index.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="fluig-style-guide">
+			<div id="divApp">
+				<!-- Area do formulario -->
+				<div class="div-form scroll">
+					<form name="form"></form>
+				</div>		
+				<!-- Area do menu -->
+				<div class="div-tool nav-page scroll">
+					<ul id="ulComp" class="list-group">
+						<li class="list-group-item li-panel li-hide" id="liPanel" data-element='{"element":"panel","location":"form","properties":["label"], "show":["input","group"]}'>Painel</li>
+						<li class="list-group-item li-input li-hide" id="liText" data-element='{"element":"text","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Campo de Texto</li>
+						<li class="list-group-item li-input li-hide" id="liDate" data-element='{"element":"date","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Campo de Data</li>
+						<li class="list-group-item li-input li-hide" id="liMoney" data-element='{"element":"money","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Campo de Moeda</li>
+						<li class="list-group-item li-input li-hide" id="liPercent" data-element='{"element":"percent","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Campo de Porcentagem</li>
+						<li class="list-group-item li-input li-hide" id="liZoom" data-element='{"element":"zoom","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Campo com Zoom</li>
+						<li class="list-group-item li-input li-hide" id="liSelect" data-element='{"element":"select","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Campo de Seleção</li>
+						<li class="list-group-item li-group li-hide" id="liRadio" data-element='{"element":"groupRadio","location":"row","properties":["label","size"], "show":["radio"]}'>Campo Radio</li>
+						<li class="list-group-item li-radio li-hide" id="liRadioOption" data-element='{"element":"radio","location":"group","properties":["label"], "show":["radio"]}'>Opção para Radio</li>
+						<li class="list-group-item li-radio li-hide" id="liFimRadio" data-element='{"element":"","location":"","properties":[], "show":["panel","input","group"]}'>Finalizar Edição do Radio</li>
+						<li class="list-group-item li-group li-hide" id="liCheckBox" data-element='{"element":"groupCheckbox","location":"row","properties":["label","size"], "show":["checkbox"]}'>Campo Checkbox</li>
+						<li class="list-group-item li-checkbox li-hide" id="liCheckBoxOption" data-element='{"element":"checkbox","location":"group","properties":["label"], "show":["checkbox"]}'>Opção para Checkbox</li>
+						<li class="list-group-item li-checkbox li-hide" id="liFimCheckbox" data-element='{"element":"","location":"","properties":[], "show":["panel","input","group"]}'>Finalizar Edição do Checkbox</li>
+						<li class="list-group-item li-input li-hide" id="liTextarea" data-element='{"element":"textarea","location":"row","properties":["label","size"], "show":["panel","input","group"]}'>Área de Texto</li>
+						<li class="list-group-item li-group li-hide" id="liTable" data-element='{"element":"groupPaiFilho","location":"row","properties":["label","size"], "show":["paiFilho"]}'>Tabela Pai Filho</li>
+						<li class="list-group-item li-paiFilho li-hide" id="liTableColumn" data-element='{"element":"child","location":"group","properties":["label"], "show":["paiFilho"]}'>Coluna</li>
+						<li class="list-group-item li-paiFilho li-hide" id="liFimTable" data-element='{"element":"","location":"","properties":[], "show":["panel","input","group"]}'>Finalizar Edição da Tabela</li>
+						<li class="list-group-item li-show" id="liDoc">Gerar Documentação</li>
+						<li class="list-group-item li-show" id="liHelp">Ajuda</li>
+					</ul>
+					<textarea rows="5" cols="26" id="codigoFonte"></textarea>
+				</div>
+			</div>
+			<!-- formulario oculto para criar novos campos -->
+			<div class="div-properties">
+				<div class="panel panel-success">
+				    <div class="panel-heading">
+				        <h3 class="panel-title"><b>Olá Amiguinho!</b></h3>
+				    </div>
+				    <div class="panel-body">
+				        <div class="form-group row">
+		        			<div class="col-md-12">
+								<label for="label">Qual é o label?</label>
+								<input type="text" class="form-control" id="label" />
+							</div>
+		        		</div>
+		        		<div class="form-group row">
+		        			<div class="col-md-12">
+								<label for="size">Qual é o tamanho? (1 a 12)</label>
+								<input type="text" class="form-control" name="size" id="size" />
+							</div>
+		        		</div>		        		
+				        <div class="form-group row">
+				        	<div class="col-md-12 fs-txt-right">
+				        		<button id="btConfirm" type="button" class="btn btn-primary">Continuar</button>
+				        	</div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+			<!-- tela de ajuda -->
+			<div id="div-help">
+				<div class="panel panel-success">
+				    <div class="panel-heading">
+				        <h3 class="panel-title"><b>Posso Ajudá-lo?</b></h3>
+				    </div>
+				    <div class="panel-body">
+				        <h3>Alterar Título do Formulário/Painel ou Label de Campo:</h3>
+						<p class="text-justify">Dois cliques no título ou label que deseja alterar.</p>
+						<h3>Selecionar Campo:</h3>
+						<p class="text-justify">Clique no label ou no próprio campo.</p>
+						<h3>Limpar Seleção:</h3>
+						<p class="text-justify">Clique no cabeçalho de um painel qualquer.</p>
+						<h3>Adicionar Campos Antes do Selecionado:</h3>
+						<p class="text-justify">Estando o campo devidamente selecionado, basta adicionar o novo campo normalmente.</p>
+						<h3>Remover Campo:</h3>
+						<p class="text-justify">Dois cliques no campo que deseja remover.</p>
+						<div class="form-group row">
+				        	<div class="col-md-12 fs-txt-right">
+				        		<button id="btCloseHelp" type="button" class="btn btn-primary">Fechar</button>
+				        	</div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+			<!-- tela de documentacao -->
+			<div id="div-documentation">
+				<div class="panel panel-success">
+				    <div class="panel-heading">
+				        <h3 class="panel-title"><b id="docTitle">MIF 998</b></h3>
+				    </div>
+				    <div class="panel-body">
+				        <h3 class="h3-doc">3 FORMULÁRIO</h3>
+						<h4 class="h4-doc">3.1 Formulário Principal</h4>
+						<p class="p-doc">O objetivo do modelo de formulário abaixo é demonstrar quais serão os campos que os usuários envolvidos no processo irão preencher. 
+						Todas as características e validações dos campos, poderão ser vistos no item "4 - Detalhes dos Campos".</p>
+						<p id="printScreen">PRINT SCREEN DO FORMULÁRIO</p>
+						<h3 class="h3-doc">4 DETALHES DOS CAMPOS</h3>
+						<h4 class="h4-doc">4.1 Propriedade dos campos</h4>
+						<p class="p-doc">Para campos do tipo Zoom da relação abaixo, os usuários deverão poder tanto digitar a informação quanto selecionar pelo Zoom.</p>
+						<table id="tableFieldDetail">
+							<script id="tplFieldDetail" type="text/html">
+								<caption><p>Descrição dos Campos</p></caption>
+								<tr>
+									<th>Campo (Label)</th>
+									<th>Nome (name e id)</th>
+									<th>Type (type)</th>
+									<th>Formato</th>
+									<th>Editável</th>
+									<th>Integrado</th>
+									<th>Observações</th>
+								</tr>
+								{{#panel}}
+								<tr>
+									<td colspan="7" class="section">{{panelLabel}}</td>
+								</tr>
+								{{#field}}
+								<tr class="line">
+									<td>{{label}}</td>
+									<td>{{id}}</td>
+									<td>{{type}}</td>
+									<td>{{format}}</td>
+									<td>Sim</td>
+									<td>Não</td>
+									<td></td>
+								</tr>
+								{{/field}}
+								{{/panel}}
+							</script>
+						</table>
+						<br/>
+						<h4 class="h4-doc">4.2 Descrição e regras dos campos</h4>
+						<p class="p-doc">Todos os campos marcados com um "*" são campos de preenchimento obrigatório e precisam ser validados para não permitir conteúdo vazio.
+						Os campos que possuírem opção de consulta padrão, representada pelo símbolo de uma lupa, poderão também receber a informação na forma digitada. Essa digitação deverá ser validada de forma a garantir que não seja digitado alguma informação inválida.</p>
+						<table id="tableFieldRules">
+							<script id="tplFieldRules" type="text/html">
+								<caption><p>Descrição dos Campos</p></caption>
+								<tr>
+									<th>Campo (Label)</th>
+									<th>Nome (name e id)</th>
+									<th>Descrição/Regras</th>
+								</tr>
+								{{#panel}}
+								<tr>
+									<td colspan="7" class="section">{{panelLabel}}</td>
+								</tr>
+								{{#field}}
+								<tr class="line">
+									<td>{{label}}</td>
+									<td>{{id}}</td>
+									<td></td>
+								</tr>
+								{{/field}}
+								{{/panel}}
+							</script>
+						</table>
+						<br/>
+						<h4 class="h4-doc">4.3 Controle dos campos nas atividades</h4>
+						<table id="tableFieldControl">
+							<script id="tplFieldControl" type="text/html">
+								<caption><p>Controle dos Campos</p></caption>
+								<tr class="line">
+									<td colspan="2">
+										<b>Legenda:</b><br/>
+										<b>A</b> – Automático (obrigatório e não editável);<br/>
+										<b>O</b> - Obrigatório (e editável);<br/>
+										<b>E</b> - Editável (e não obrigatório);<br/>
+										<b>B</b> – Bloqueado;<br/>
+										<b>OC</b> – Oculto;<br/>
+										<b>*</b> - Regra dinâmica. Verificar tabela de descrição dos campos.
+									</td>
+									<td colspan="3"><b>Atividades</b></td>
+								</tr>
+								<tr>
+									<th>Campo (Label)</th>
+									<th>Nome (Name e Id)</th>
+									<th>1 - Início</th>
+									<th>2 - Emitir Nota</th>
+									<th>3 - Fim</th>
+								</tr>
+								{{#panel}}
+								<tr>
+									<td colspan="7" class="section">{{panelLabel}}</td>
+								</tr>
+								{{#field}}
+								<tr class="line">
+									<td>{{label}}</td>
+									<td>{{id}}</td>
+									<td>E</td>
+									<td>O</td>
+									<td>B</td>
+								</tr>
+								{{/field}}
+								{{/panel}}
+							</script>
+						</table>
+						<div class="form-group row">
+				        	<div class="col-md-12 fs-txt-right">
+				        		<button id="btCloseDoc" type="button" class="btn btn-primary">Fechar</button>
+				        	</div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>
